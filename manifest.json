@@ -1,0 +1,28 @@
+{
+    "name":"VanishModeViewer",
+	"description":"View dissapearing messages on PC.",
+    "version": "12.0",
+	"author":["Vany"],
+    "manifest_version":2,
+	"permissions": [
+		"storage"
+	],
+	"icons":{
+		"128":"vanish.png"
+	},
+	"browser_action":{
+		"default_icon":{
+			"128":"vanish.png"
+		}
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://www.instagram.com/*"
+			],
+			"all_frames": true,
+			"js": ["VanishModeViewer.js"],
+			"run_at": "document_start"
+		}
+	]
+}
