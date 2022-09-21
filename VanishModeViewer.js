@@ -9,27 +9,24 @@ const inj = () => {
       await sleep(100);
       let els;
       if (fromWS == true) {
-          els = document.querySelector(`a[href*="direct/t/${threadUserName}"]`).parentElement.parentElement || "regex it is"
-          if (els != "regex it is")
-              return els;
-          let tempusers = [];
-          document.body.innerHTML.match(/(?<=alt=")[a-zA-Z0-9._]*(?='s)/gm).forEach(x => {
-              if (tempusers.includes(x)) {
-                  threadUserName = x;
-                  return els = document.querySelector(`[alt="${x}'s profile picture"]`)
-                    .parentElement
-                    .parentElement
-                    .parentElement
-                    .parentElement
-                    .parentElement
-                    .parentElement
-                    .parentElement;
-              }
-              tempusers.push(x)
-
-          })
+          els = document.querySelector(`a[href*="direct/t/${threadUserName}"]`)?.parentElement?.parentElement || "regex it is"
+          if (els == "regex it is"){
+            let tempusers = [];
+            document.body.innerHTML.match(/(?<=alt=")[a-zA-Z0-9._]*(?='s)/gm).forEach(x => {
+                if (tempusers.includes(x)) {
+                    threadUserName = x;
+                    return els = document.querySelector(`[alt="${x}'s profile picture"]`)
+                        .parentElement
+                        .parentElement
+                        .parentElement
+                        .parentElement
+                        .parentElement;
+                }
+                tempusers.push(x)
+            })
+        }
       } else {
-        let regex=new RegExp(`${threadUserName}`, "gm");
+        let regex=new RegExp(`${threadUserName}'s profile picture`, "gm");
         if (document.body.innerHTML.match(regex).length>1) {
             els = document.querySelector(`[alt="${threadUserName}'s profile picture"]`)
                         .parentElement
